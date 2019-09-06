@@ -30,7 +30,7 @@ class App extends React.Component {
         userRef.onSnapshot(snapShot => {
           setCurrentUser({
             id: snapShot.id,
-            ...snapShot.data()
+            ...snapShot.data(),
           });
         });
       }
@@ -55,11 +55,7 @@ class App extends React.Component {
             exact
             path='/signin'
             render={() =>
-              this.props.currentUser ? (
-                <Redirect to='/' />
-              ) : (
-                <SignInAndSignUpPage />
-              )
+              this.props.currentUser ? <Redirect to='/' /> : <SignInAndSignUpPage />
             }
           />
         </Switch>
@@ -69,11 +65,11 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  setCurrentUser: user => dispatch(setCurrentUser(user)),
 });
 
 export default connect(
